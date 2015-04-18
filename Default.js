@@ -1,30 +1,38 @@
+var allFiles = [];
+var currentIndex = 0;
 
+function storeFiles(file){
+	allFiles[currentIndex] = file;
+	currentIndex++;
+}
 
+//if an image is removed, need to move items down
+//array to fill empty index spot
 
-  function handleFileSelect(selection) {
+function handleFileSelect(selection) {
     var files = selection.target.files; 
 	
 	//goes through list of chosen files
     for (var i = 0, f; f = files[i]; i++) {
+		storeFiles(f);
+		if (!f.type.match('image.*')) {
+			continue;
+		}
 
-      if (!f.type.match('image.*')) {
-        continue;
-      }
+		var reader = new FileReader();
 
-      var reader = new FileReader();
-
-      reader.onload = (function(theFile) {
+		reader.onload = (function(theFile) {
         return function(e) {
 			//prints images in divs with specific format
-          var div = document.createElement('div');
-          div.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', escape(theFile.name), '"/>'].join('');
-          document.getElementById('container').insertBefore(div, null);
-        };
-      })(f);
+			var div = document.createElement('div');
+			div.innerHTML = ['<img class="thumb" src="', e.target.result,
+							'" title="', escape(theFile.name), '"/>'].join('');
+			document.getElementById('container').insertBefore(div, null);
+			};
+		})(f);
 
-      reader.readAsDataURL(f);
+    reader.readAsDataURL(f);
     }
   }
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
