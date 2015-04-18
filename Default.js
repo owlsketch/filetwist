@@ -2,22 +2,20 @@
 
 
   function handleFileSelect(selection) {
-    var files = selection.target.files; // FileList object
-
-    // Loop through the FileList and render image files as thumbnails.
+    var files = selection.target.files; 
+	
+	//goes through list of chosen files
     for (var i = 0, f; f = files[i]; i++) {
 
-      // Only process image files.
       if (!f.type.match('image.*')) {
         continue;
       }
 
       var reader = new FileReader();
 
-      // Closure to capture the file information.
       reader.onload = (function(theFile) {
         return function(e) {
-          // Render thumbnail.
+			//prints images in divs with specific format
           var div = document.createElement('div');
           div.innerHTML = ['<img class="thumb" src="', e.target.result,
                             '" title="', escape(theFile.name), '"/>'].join('');
@@ -25,7 +23,6 @@
         };
       })(f);
 
-      // Read in the image file as a data URL.
       reader.readAsDataURL(f);
     }
   }
