@@ -10,7 +10,8 @@ container{
 }
 
 .thumb {
-    height: 75px;
+    max-height:200px;
+	max-width: 200px;
     border: 1px solid #000;
     margin: 10px 5px 0 0;
  }
