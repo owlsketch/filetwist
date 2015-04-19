@@ -35,23 +35,23 @@ function readDocument(startByte, stopByte, f) {
     reader.onloadend = function(selection) {
     if (selection.target.readyState == FileReader.DONE) { 
 		var div = document.createElement('div');
-		var divTitle = document.createElement('div');
+//		var divTitle = document.createElement('div');
 		var divContent = document.createElement('div');
-		var divMinMax = document.createElement('div');
+//		var divMinMax = document.createElement('div');
 
 		div.setAttribute("id", "window");
-		divTitle.setAttribute("id", "doc_title");
-		divMinMax.setAttribute("id", "minMax");
-		
-		divTitle.textContent = file.name;
-		divTitle.appendChild(divMinMax);
-
-		div.appendChild(divTitle);
-		
+//		divTitle.setAttribute("id", "doc_title");
+//		divMinMax.setAttribute("id", "minMax");
 		divContent.setAttribute("id", "doc_content");
+//		divMinMax.textContent = "-";
+//		divTitle.appendChild(divMinMax);
+//		div.appendChild(divTitle);
+		
+		
+	//	divTitle.textContent = file.name;
+		
 		div.appendChild(divContent);
-		divContent.textContent = selection.target.result;
-
+		divContent.innerHTML = ['<a href="', file.name, '" target="_blank" ></a>', file.name, '<p>', selection.target.result, '</p>'].join('');
 		document.getElementById('container').insertBefore(div, null);
       }
     };
@@ -87,7 +87,7 @@ function handleFileSelect(selection) {
 			}
 			else if(extension == "doc"|| extension == "docx" || extension == "txt"){ //maybe txt?
 				var startByte = 0; //document.getElementById('temp').getAttribute('data-startbyte');
-				var endByte = 100;
+				var endByte = 150;
 				readDocument(startByte, endByte, f);
 			}
 			
