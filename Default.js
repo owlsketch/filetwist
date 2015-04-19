@@ -20,23 +20,21 @@ function handleFileSelect(selection) {
         if(extension == "pdf"){
         console.log("yay");
         }
-        else if(extension == "webm"){
+        else if(extension == "webm"|| extension == "mkv" || extension == "mp4"){
             var reader = new FileReader();
 
             reader.onload = (function(theFile) {
             return function(e) {
 			//prints images in divs with specific format
-          var div = document.createElement('div');
-          div.innerHTML = ['<video class="webms" src="', e.target.result, '" title="',e.target.result,'" controls></video>'].join('');
-           document.getElementById('container').insertBefore(div, null);
+            var div = document.createElement('div');
+            div.setAttribute("width", "1px");
+            div.setAttribute("height","1px");
+            div.innerHTML = ['<video class="webms" src="', e.target.result, '" title="Video" controls></video>'].join('');
+            document.getElementById('container').insertBefore(div, null);
         };
       })(f);
 
       reader.readAsDataURL(f);
-            // <div>
-            // <video class="webms" src="name.webm" title="name.webm" controls></video>
-            // </div>
-            //
       }
       }
 
@@ -48,6 +46,8 @@ function handleFileSelect(selection) {
         return function(e) {
 			//prints images in divs with specific format
 			var div = document.createElement('div');
+            div.setAttribute("width", "1px");
+            div.setAttribute("height","1px");
 			div.innerHTML = ['<img class="thumb" src="', e.target.result,
 							'" title="', escape(theFile.name), '"/>'].join('');
 			document.getElementById('container').insertBefore(div, null);

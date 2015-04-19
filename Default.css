@@ -1,11 +1,12 @@
 body{
+    display: inline-block;
 	margin: 0;
 	padding: 0;
 }
 
 container{
-	width: 500px;
-	height: 500px;
+	width: 10px;
+	height: 10px;
 	
 }
 
