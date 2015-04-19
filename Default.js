@@ -27,9 +27,7 @@ function handleFileSelect(selection) {
 					return function(e) {
 						//prints images in divs with specific format
 						var div = document.createElement('div');
-						div.setAttribute("width", "1px");
-						div.setAttribute("height","1px");
-						div.innerHTML = ['<video class="webms" src="', e.target.result, '" title="Video" controls></video>'].join('');
+						div.innerHTML = ['<video class="webms" style="z-index: -1;" src="', e.target.result, '" title="Video" controls></video>'].join('');
 						document.getElementById('container').insertBefore(div, null);
 					};
 				})(f);
@@ -46,9 +44,7 @@ function handleFileSelect(selection) {
 				return function(e) {
 					//prints images in divs with specific format
 					var div = document.createElement('div');
-					div.setAttribute("width", "1px");
-					div.setAttribute("height","1px");
-					div.innerHTML = ['<img class="thumb" src="', e.target.result,
+					div.innerHTML = ['<img class="thumb" style="z-index: -1;" src="', e.target.result,
 									'" title="', escape(theFile.name), '"/>'].join('');
 					document.getElementById('container').insertBefore(div, null);
 					};

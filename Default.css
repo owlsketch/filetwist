@@ -4,15 +4,16 @@ body{
 	padding: 0;
 }
 
-container{
-	width: 10px;
-	height: 10px;
-	
+* {
+    position: absolute;
+}
+
+input {
+    z-index: 99999;
 }
 
 .thumb {
-    max-height:200px;
-	max-width: 200px;
-    border: 1px solid #000;
-    margin: 10px 5px 0 0;
+    -webkit-box-shadow: 0 3px 6px #777;
+      -moz-box-shadow: 0 3px 6px #777;
+        box-shadow: 0 3px 6px #777;
  }
