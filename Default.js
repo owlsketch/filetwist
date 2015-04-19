@@ -9,6 +9,57 @@ function storeFiles(file){
 //if an image is removed, need to move items down
 //array to fill empty index spot
 
+$("#minMax").click(function(){
+    if($(this).html() == "-"){
+        $(this).html("+");
+    }
+    else{
+        $(this).html("-");
+    }
+    $("#doc_content").slideToggle();
+});
+
+function readDocument(startByte, stopByte, f) {
+    var files = document.getElementById('files').files;
+    if (!files.length) {
+      alert('Please select a file!');
+      return;
+    }
+
+    var file = f;
+    var start = parseInt(startByte) || 0;
+    var stop = parseInt(stopByte) || file.size - 1;
+
+    var reader = new FileReader();
+	
+    reader.onloadend = function(selection) {
+    if (selection.target.readyState == FileReader.DONE) { 
+		var div = document.createElement('div');
+		var divTitle = document.createElement('div');
+		var divContent = document.createElement('div');
+		var divMinMax = document.createElement('div');
+
+		div.setAttribute("id", "window");
+		divTitle.setAttribute("id", "doc_title");
+		divMinMax.setAttribute("id", "minMax");
+		
+		divTitle.textContent = file.name;
+		divTitle.appendChild(divMinMax);
+
+		div.appendChild(divTitle);
+		
+		divContent.setAttribute("id", "doc_content");
+		div.appendChild(divContent);
+		divContent.textContent = selection.target.result;
+
+		document.getElementById('container').insertBefore(div, null);
+      }
+    };
+
+    var blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
+}
+
 function handleFileSelect(selection) {
     var files = selection.target.files; 
 	
@@ -34,8 +85,13 @@ function handleFileSelect(selection) {
 
 				reader.readAsDataURL(f);
 			}
+			else if(extension == "doc"|| extension == "docx" || extension == "txt"){ //maybe txt?
+				var startByte = 0; //document.getElementById('temp').getAttribute('data-startbyte');
+				var endByte = 100;
+				readDocument(startByte, endByte, f);
+			}
+			
 		}
-
 		else {
 			var reader = new FileReader();
 
@@ -56,3 +112,4 @@ function handleFileSelect(selection) {
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
+

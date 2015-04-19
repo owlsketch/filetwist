@@ -17,3 +17,38 @@ input {
       -moz-box-shadow: 0 3px 6px #777;
         box-shadow: 0 3px 6px #777;
  }
+
+ #displayDoc{
+	margin: 5px 0;
+    max-height: 100px;
+	width: 60px;
+    overflow-y: auto;
+    overflow-x: hidden;
+ }
+
+#doc_title { 
+	margin-top: 5px; 
+	font-weight: bold;
+	//background: #FEFEFE;
+    height: 25px;
+    width: 100%;
+}
+  
+#doc_content{
+   // background: #DFDFDF;
+}
+
+/************************/
+#window{
+    width:200px;
+    border:solid 1px;
+	background-color: #E9E74A;
+}
+
+
+#minMax{
+    width: 25px;
+    height: 23px;
+    float:right;
+    cursor:pointer;
+}
