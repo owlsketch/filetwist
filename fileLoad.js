@@ -6,21 +6,21 @@
 
 	function uploadFiles(file) {
 		//if browser supports FileReader and regex test for file.type exists
-		if(typeof FileReader !== "undefined" && (/image/i).test(file.type) ) {
+		if(typeof FileReader !== "undefined" /*&& (/image/i).test(file.type)*/ ) {
 			var img = document.createElement("img");
-			img.src = file.name;
-			/*
+
 			var reader = new FileReader();
-			reader.onload = (function(image) {
+			reader.onload = (function(a_file) {
 				return function(e) {
-					image.src = e.target.result;
+					img.src = e.target.result;
+					console.log(img.width);
+					console.log(img.height);
 				};
-			}(img));
-			//reader.readAsDataURL(file);
-			*/
+			}(file));
+			reader.readAsDataURL(file);
 			drop_area.appendChild(img);
+
 		}
-		console.log("faa");
 	};
 
 	function traverseFiles(files) {
@@ -28,6 +28,7 @@
 			//traverse through all our files
 			for(var i = 0; i < files.length; i++) {
 				uploadFiles(files[i]);
+				console.log(files[i].name);
 			}
 		}
 		else {
