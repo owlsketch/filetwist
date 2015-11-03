@@ -31,13 +31,17 @@ html, body, ul, li, p {
 	margin-bottom: 1.2em;
 }
 
+.fa {
+	vertical-align: .1em;
+}
+
 #sidebar > ul > li{
-	margin-left: 3em;
+	margin-left: 2em;
 	margin-bottom: 1.5em;
 }
 
 #sidebar > ul > li > ul > li {
-	margin-left: 1.2em;
+	margin-left: 2.25em;
 	font-size: .9em;
 	color: #fff;
 }
@@ -54,8 +58,17 @@ html, body, ul, li, p {
 	margin-bottom: 0.2em;
 }
 
-#main_content {
+#drop_area {
 	margin-left: 11em;
 	height: 100%;
 	z-index: -1;
+}
+
+.container {
+	display: inline;
+	float: left;
+}
+
+.hide {
+	display: none;
 }
