@@ -2,6 +2,7 @@ html, body {
 	height: 100%;
 	font-family: 'Oswald', sans-serif;
 	font-size: 16px;
+	color: #28282F;
 }
 
 html, body, ul, li, p {
@@ -13,10 +14,12 @@ html, body, ul, li, p {
 
 #sidebar {
 	color: #F2F1E7;
-	background-color: #28282B;
-	float: left;
+	background-color: #28282F;
 	width: 11em;
 	height: 100%;
+
+	position: fixed;
+	z-index: 1;
 
 	-webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
 	-moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
@@ -39,6 +42,20 @@ html, body, ul, li, p {
 	color: #fff;
 }
 
+
+#sidebar #files_uploaded {
+	opacity: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+
 #sidebar #transform, #sidebar #draw{
 	margin-bottom: 0.2em;
+}
+
+#main_content {
+	margin-left: 11em;
+	height: 100%;
+	z-index: -1;
 }

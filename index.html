@@ -11,7 +11,13 @@
 <div id="sidebar">
 <h1>FILE TWIST</h1>
 <ul>
-	<li id="load_file">LOAD FILE</li>
+	<!-- http://robertnyman.com/2010/12/16/utilizing-the-html5-file-api-to-choose-upload-preview-and-see-progress-for-multiple-files/ -->
+	<li id="load_file">
+		<div style="position: relative; width: 4.75em;">
+			<div id="file_sub" style="position: absolute;">LOAD FILES</div>
+			<input id="files_uploaded" type="file" multiple onchange="//document.getElementById('file_sub').innerHTML = this.value;"/>
+		</div>
+	</li>
 	<li id="navigate">NAVIGATE</li>
 	<li id="transform">TRANSFORM</li>
 	<li id="transform_children">
@@ -35,6 +41,8 @@
 </div>
 
 <div id="main_content">
+	<p> This is a test to see wether the present object will be placed in the background or foreground. </p>
+	<h2> Yay this is working </h2>
 </div>
 
 </body>
