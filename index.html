@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8"></meta>
 	<title>file_twist</title>
-	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="main.css" media="screen" />
 </head>
 <body>
@@ -13,13 +14,13 @@
 <ul>
 	<!-- http://robertnyman.com/2010/12/16/utilizing-the-html5-file-api-to-choose-upload-preview-and-see-progress-for-multiple-files/ -->
 	<li id="load_file">
-		<div style="position: relative; width: 4.75em;">
-			<div id="file_sub" style="position: absolute;">LOAD FILES</div>
+		<div style="position: relative; width: 6em;">
+			<div id="file_sub" style="position: absolute;"><i class="fa fa-image fa-fw"></i> LOAD FILES</div>
 			<input id="files_uploaded" type="file" multiple onchange="//document.getElementById('file_sub').innerHTML = this.value;"/>
 		</div>
 	</li>
-	<li id="navigate">NAVIGATE</li>
-	<li id="transform">TRANSFORM</li>
+	<li id="navigate"><i class="fa fa-arrows fa-fw"></i> NAVIGATE</li>
+	<li id="transform"><i class="fa fa-expand fa-fw"></i> TRANSFORM</li>
 	<li id="transform_children">
 		<ul> 
 			<li>MOVE</li>
@@ -27,23 +28,28 @@
 			<li>ROTATE</li>
 		</ul>
 	</li>
-	<li id="notes">NOTES</li>
-	<li id="draw">DRAW</li>
+	<li id="notes"><i class="fa fa-sticky-note-o fa-fw"></i> NOTES</li>
+	<li id="draw"><i class="fa fa-pencil-square-o fa-fw"></i> DRAW</li>
 	<li>
 		<ul> 
-			<li>WEIGHT</li>
 			<li>COLOR</li>
+			<li>WEIGHT</li>
 			<li>ERASE</li>
 		</ul>
 	</li>
-	<li id="delete">DELETE</li>
+	<li id="delete"><i class="fa fa-trash-o fa-fw"></i> DELETE</li>
 </ul>
 </div>
 
-<div id="main_content">
-	<p> This is a test to see wether the present object will be placed in the background or foreground. </p>
-	<h2> Yay this is working </h2>
+<div id="drop_area">
+	<!--
+	<span class="init-instructions">Start by dragging files here or clicking on load files.</span>
+	<br>
+	<span class="drop-over">Drop files here!</span>
+	-->
 </div>
+
+<script language="javascript" type="text/javascript" src="./fileLoad.js"></script>
 
 </body>
 </html>
