@@ -1,0 +1,44 @@
+html, body {
+	height: 100%;
+	font-family: 'Oswald', sans-serif;
+	font-size: 16px;
+}
+
+html, body, ul, li, p {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+}
+
+#sidebar {
+	color: #F2F1E7;
+	background-color: #28282B;
+	float: left;
+	width: 11em;
+	height: 100%;
+
+	-webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
+	box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+#sidebar h1 {
+	text-align: center;
+	margin-bottom: 1.2em;
+}
+
+#sidebar > ul > li{
+	margin-left: 3em;
+	margin-bottom: 1.5em;
+}
+
+#sidebar > ul > li > ul > li {
+	margin-left: 1.2em;
+	font-size: .9em;
+	color: #fff;
+}
+
+#sidebar #transform, #sidebar #draw{
+	margin-bottom: 0.2em;
+}
