@@ -7,18 +7,38 @@
 	function uploadFiles(file) {
 		//if browser supports FileReader and regex test for file.type exists
 		if(typeof FileReader !== "undefined" /*&& (/image/i).test(file.type)*/ ) {
+			var container = document.createElement("div");
 			var img = document.createElement("img");
+
+			container.className = "container";
 
 			var reader = new FileReader();
 			reader.onload = (function(a_file) {
 				return function(e) {
+					img.onload = function() {
+						//constraints for upload:
+						//image width or height can not be greater than half of the available area
+
+						//need to update parent's container size
+						if(img.width > 416) {
+							img.style.width = "26em";
+						}
+						else if(img.width < 100) {
+							img.style.width = "6.25em";
+						}
+						else if(img.height > 800) {
+							img.style.height = "50em";
+						}
+						else if(img.height < 100) {
+							img.style.height = "6.25em";
+						}
+					};
 					img.src = e.target.result;
-					console.log(img.width);
-					console.log(img.height);
 				};
 			}(file));
 			reader.readAsDataURL(file);
-			drop_area.appendChild(img);
+			container.appendChild(img);
+			drop_area.appendChild(container);
 
 		}
 	};

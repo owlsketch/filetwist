@@ -63,3 +63,12 @@ html, body, ul, li, p {
 	height: 100%;
 	z-index: -1;
 }
+
+.container {
+	display: inline;
+	float: left;
+}
+
+.hide {
+	display: none;
+}
