@@ -36,9 +36,16 @@ html, body, ul, li, p {
 }
 
 #sidebar > ul > li{
+	display:inline-block;
 	margin-left: 2em;
 	margin-bottom: 1.5em;
 }
+
+#sidebar > ul > li:hover, #files_uploaded:hover {
+	color: #5050B2;
+	cursor: pointer;
+}
+
 
 #sidebar > ul > li > ul > li {
 	margin-left: 2.25em;
@@ -46,6 +53,14 @@ html, body, ul, li, p {
 	color: #fff;
 }
 
+#sidebar > ul > li > ul > li:hover {
+	color: #6767E5;
+}
+
+#sidebar > ul > li:last-child:hover {
+	color: #D44440;
+	cursor: pointer;
+}
 
 #sidebar #files_uploaded {
 	opacity: 0;
@@ -62,6 +77,13 @@ html, body, ul, li, p {
 	margin-left: 11em;
 	height: 100%;
 	z-index: -1;
+}
+
+#drop_over {
+	width: 6em;
+	margin: auto;
+	padding-top: 6.75em;
+	color: #AAA;
 }
 
 .container {

@@ -3,6 +3,7 @@
 (function() {
 	var files_uploaded = document.getElementById("files_uploaded");	
 	var drop_area = document.getElementById("drop_area");
+	var drop_over = document.getElementById("drop_over");
 
 	function uploadFiles(file) {
 		//if browser supports FileReader and regex test for file.type exists
@@ -39,7 +40,6 @@
 			reader.readAsDataURL(file);
 			container.appendChild(img);
 			drop_area.appendChild(container);
-
 		}
 	};
 
@@ -48,7 +48,12 @@
 			//traverse through all our files
 			for(var i = 0; i < files.length; i++) {
 				uploadFiles(files[i]);
-				console.log(files[i].name);
+			}
+			if(drop_area.getElementsByClassName("container").length > 0) {
+				drop_over.className += " hide";
+			}
+			else {
+				drop_over.className = null;
 			}
 		}
 		else {
@@ -94,4 +99,5 @@
 		e.preventDefault();
 		e.stopPropagation();
 	}, false);
+
 })();
