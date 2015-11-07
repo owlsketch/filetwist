@@ -6,40 +6,74 @@
 	var drop_over = document.getElementById("drop_over");
 
 	function uploadFiles(file) {
-		//if browser supports FileReader and regex test for file.type exists
-		if(typeof FileReader !== "undefined" /*&& (/image/i).test(file.type)*/ ) {
+		//if browser supports FileReader
+		if(typeof FileReader !== "undefined") {
 			var container = document.createElement("div");
-			var img = document.createElement("img");
-
 			container.className = "container";
+				
+			//console.log(file);
+			if((/image/i).test(file.type)) { //if file type is image
 
-			var reader = new FileReader();
-			reader.onload = (function(a_file) {
-				return function(e) {
-					img.onload = function() {
-						//constraints for upload:
-						//image width or height can not be greater than half of the available area
+				var img = document.createElement("img");
 
-						//need to update parent's container size
-						if(img.width > 416) {
-							img.style.width = "26em";
-						}
-						else if(img.width < 100) {
-							img.style.width = "6.25em";
-						}
-						else if(img.height > 800) {
-							img.style.height = "50em";
-						}
-						else if(img.height < 100) {
-							img.style.height = "6.25em";
-						}
+				var reader = new FileReader();
+				reader.onload = (function(a_file) {
+					return function(e) {
+						img.onload = function() {
+							//constraints for upload:
+							//image width or height can not be greater than half of the available area
+
+							//need to update parent's container size
+							if(img.width > 416) {
+								img.style.width = "26em";
+							}
+							else if(img.width < 100) {
+								img.style.width = "6.25em";
+							}
+							else if(img.height > 800) {
+								img.style.height = "50em";
+							}
+							else if(img.height < 100) {
+								img.style.height = "6.25em";
+							}
+						};
+						img.src = e.target.result;
 					};
-					img.src = e.target.result;
-				};
-			}(file));
-			reader.readAsDataURL(file);
-			container.appendChild(img);
-			drop_area.appendChild(container);
+				}(file));
+				reader.readAsDataURL(file);
+				container.appendChild(img);
+				drop_area.appendChild(container);
+			}
+			else if((/video/i).test(file.type)) {
+				var vid = document.createElement("video");
+
+				var reader = new FileReader();
+				reader.onload = (function(a_file) {
+					return function(e) {
+						vid.src = e.target.result;
+						vid.setAttribute("controls", "controls");
+						vid.setAttribute("loop", true);
+						vid.setAttribute("width", "300");
+
+						/* Look into MediaAPI, onload doesn't work
+						vid.onload = function() {
+							if(vid.width > 416) {
+								vid.style.width = "26em";
+							}
+							else if(vid.height > 800) {
+								vid.style.height = "50em";
+							}
+						};
+						*/
+					};
+				}(file));
+				reader.readAsDataURL(file);
+				container.appendChild(vid);
+				drop_area.appendChild(container);
+			}
+			else {
+				//do nothing for now.	
+			}
 		}
 	};
 
@@ -49,11 +83,12 @@
 			for(var i = 0; i < files.length; i++) {
 				uploadFiles(files[i]);
 			}
+			//if any images on board
 			if(drop_area.getElementsByClassName("container").length > 0) {
 				drop_over.className += " hide";
 			}
 			else {
-				drop_over.className = null;
+				drop_over.className -= " hide";
 			}
 		}
 		else {

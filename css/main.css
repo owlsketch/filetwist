@@ -41,11 +41,10 @@ html, body, ul, li, p {
 	margin-bottom: 1.5em;
 }
 
-#sidebar > ul > li:hover, #files_uploaded:hover {
+#sidebar > ul > li:hover, #files_uploaded:hover{
 	color: #5050B2;
 	cursor: pointer;
 }
-
 
 #sidebar > ul > li > ul > li {
 	margin-left: 2.25em;
