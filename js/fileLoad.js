@@ -9,7 +9,7 @@
 		//if browser supports FileReader
 		if(typeof FileReader !== "undefined") {
 			var container = document.createElement("div");
-			container.className = "container";
+			container.className = "container animated fadeIn";
 				
 			//console.log(file);
 			if((/image/i).test(file.type)) { //if file type is image
