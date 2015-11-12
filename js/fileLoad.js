@@ -71,6 +71,23 @@
 				container.appendChild(vid);
 				drop_area.appendChild(container);
 			}
+			else if((/text/i).test(file.type)){ //pdf or word file types
+				var doc = document.createElement("div");
+				//var end = parseInt(opt_stopByte) || file.size() - 1;
+				var reader = new FileReader();
+				reader.onload = (function(a_file){
+					return function(e){
+						doc.style.backgroundColor = "black";
+						doc.style.color = "white";
+						doc.style.width = '200px';
+						doc.innerHTML = e.target.result;
+					};
+				}(file));
+
+				reader.readAsBinaryString(file);
+				container.appendChild(doc);
+				drop_area.appendChild(container);
+			}
 			else {
 				//do nothing for now.	
 			}
