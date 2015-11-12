@@ -83,7 +83,6 @@
 					};
 				}(file));
 	
-				alert("ender");
 				reader.readAsBinaryString(file);
 				doc.appendChild(format);
 				container.appendChild(doc);
