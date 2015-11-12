@@ -71,20 +71,24 @@
 				container.appendChild(vid);
 				drop_area.appendChild(container);
 			}
-			else if((/text/i).test(file.type)){ //pdf or word file types
+			else if((/text/i).test(file.type)){ //txt
 				var doc = document.createElement("div");
-				//var end = parseInt(opt_stopByte) || file.size() - 1;
+				var format = document.createElement("pre");
+				
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
-						doc.className = "notes";
-						doc.innerHTML = e.target.result;
+						format.className = "notes";
+						format.innerHTML = e.target.result.replace(/\r/g, "\n");
 					};
 				}(file));
-
+	
+				alert("ender");
 				reader.readAsBinaryString(file);
+				doc.appendChild(format);
 				container.appendChild(doc);
 				drop_area.appendChild(container);
+				
 			}
 			else {
 				//do nothing for now.	
