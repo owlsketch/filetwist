@@ -86,8 +86,29 @@ html, body, ul, li, p {
 }
 
 .container {
-	display: inline;
 	float: left;
+	display: inline;
+	
+	/* Might need to have an initial class
+	that centers on start, and then replacing
+	it when object drags and moves to a new
+	position on the cavas.
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	*/
+}
+
+.notes {
+	background-color: #28282F;
+	color: #ffffff;
+	width: 12.5em;
+	
+	padding: 1em;
+
+	resize: both;
+	overflow: hidden;
 }
 
 .hide {

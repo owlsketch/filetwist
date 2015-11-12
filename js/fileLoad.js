@@ -77,9 +77,7 @@
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
-						doc.style.backgroundColor = "black";
-						doc.style.color = "white";
-						doc.style.width = '200px';
+						doc.className = "notes";
 						doc.innerHTML = e.target.result;
 					};
 				}(file));
