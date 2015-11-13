@@ -73,16 +73,25 @@
 			}
 			else if((/text/i).test(file.type)){ //pdf or word file types
 				var doc = document.createElement("div");
+				var header = document.createElement("h2");
+				var par = document.createElement("p");
+
+				doc.className = "notes";
+				//create a regex that filters out .txt and .pdf
+				header.innerHTML = file.name;
+
 				//var end = parseInt(opt_stopByte) || file.size() - 1;
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
-						doc.className = "notes";
-						doc.innerHTML = e.target.result;
+						par.innerHTML = e.target.result;
 					};
 				}(file));
 
 				reader.readAsBinaryString(file);
+
+				doc.appendChild(header);
+				doc.appendChild(par);
 				container.appendChild(doc);
 				drop_area.appendChild(container);
 			}
