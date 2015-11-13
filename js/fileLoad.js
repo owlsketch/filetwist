@@ -71,7 +71,7 @@
 				container.appendChild(vid);
 				drop_area.appendChild(container);
 			}
-			else if((/text/i).test(file.type)){ //pdf or word file types
+			else if((/text/i).test(file.type)){ //txt
 				var doc = document.createElement("div");
 				var header = document.createElement("h2");
 				var par = document.createElement("p");
@@ -84,16 +84,19 @@
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
-						par.innerHTML = e.target.result;
+						par.className = "noteText";
+						par.innerHTML = e.target.result.replace(/\r/g, "\n");
 					};
 				}(file));
-
+	
 				reader.readAsBinaryString(file);
 
 				doc.appendChild(header);
 				doc.appendChild(par);
+				//doc.appendChild(format);
 				container.appendChild(doc);
 				drop_area.appendChild(container);
+				
 			}
 			else {
 				//do nothing for now.	

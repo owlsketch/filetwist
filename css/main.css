@@ -5,7 +5,7 @@ html, body {
 	color: #28282F;
 }
 
-html, body, ul, li, p {
+html, body, ul, li, p , pre{
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
@@ -110,6 +110,10 @@ html, body, ul, li, p {
 
 	resize: both;
 	overflow: hidden;
+}
+
+.noteText {
+	font-family: Calibri, sans-serif;
 }
 
 .hide {
