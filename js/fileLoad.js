@@ -74,7 +74,7 @@
 			else if((/text/i).test(file.type)){ //txt
 				var doc = document.createElement("div");
 				var header = document.createElement("h2");
-				var par = document.createElement("p");
+				var par = document.createElement("pre");
 
 				doc.className = "notes";
 				//create a regex that filters out .txt and .pdf
