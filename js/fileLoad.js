@@ -10,8 +10,10 @@
 		if(typeof FileReader !== "undefined") {
 			var container = document.createElement("div");
 			container.className = "container animated fadeIn";
-				
-			//console.log(file);
+
+			//need to pass container to our function to set up dragging
+			setupDragging(container);
+							
 			if((/image/i).test(file.type)) { //if file type is image
 
 				var img = document.createElement("img");
