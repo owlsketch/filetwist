@@ -33,32 +33,32 @@
 <h1>FILE TWIST</h1>
 <ul>
 	<!-- http://robertnyman.com/2010/12/16/utilizing-the-html5-file-api-to-choose-upload-preview-and-see-progress-for-multiple-files/ -->
-	<li id="load_file">
+	<li onclick="currentAction('load_file', this);">
 		<!-- http://stackoverflow.com/questions/3226167/how-to-style-input-file-with-css3-javascript -->
 		<div style="position: relative; width: 6em;">
 			<div id="file_sub" style="position: absolute;"><i class="fa fa-image fa-fw"></i> LOAD FILES</div>
-			<input id="files_uploaded" type="file" multiple onchange="//document.getElementById('file_sub').innerHTML = this.value;"/>
+			<input id="files_uploaded" type="file" multiple/>
 		</div>
 	</li>
-	<li id="navigate"><i class="fa fa-arrows fa-fw"></i> NAVIGATE</li>
-	<li id="transform"><i class="fa fa-expand fa-fw"></i> TRANSFORM</li>
+	<li onclick="currentAction('navigate', this);"><i class="fa fa-arrows fa-fw"></i> NAVIGATE</li>
+	<li onclick="currentAction('transform', this);"><i class="fa fa-expand fa-fw"></i> TRANSFORM</li>
 	<li id="transform_children">
 		<ul> 
-			<li>MOVE</li>
-			<li>SCALE</li>
-			<li>ROTATE</li>
+			<li onclick="currentAction('move', this);">MOVE</li>
+			<li onclick="currentAction('scale', this);">SCALE</li>
+			<li onclick="currentAction('rotate', this);">ROTATE</li>
 		</ul>
 	</li>
-	<li id="notes"><i class="fa fa-sticky-note-o fa-fw"></i> NOTES</li>
-	<li id="draw"><i class="fa fa-pencil-square-o fa-fw"></i> DRAW</li>
+	<li onclick="currentAction('notes', this);"><i class="fa fa-sticky-note-o fa-fw"></i> NOTES</li>
+	<li onclick="currentAction('draw', this);"><i class="fa fa-pencil-square-o fa-fw"></i> DRAW</li>
 	<li>
 		<ul> 
-			<li>COLOR</li>
-			<li>WEIGHT</li>
-			<li>ERASE</li>
+			<li onclick="currentAction('color', this);" >COLOR</li>
+			<li onclick="currentAction('weight', this);" >WEIGHT</li>
+			<li onclick="currentAction('erase', this);" >ERASE</li>
 		</ul>
 	</li>
-	<li id="delete"><i class="fa fa-trash-o fa-fw"></i> DELETE</li>
+	<li onclick="currentAction('delete', this);"><i class="fa fa-trash-o fa-fw"></i> DELETE</li>
 </ul>
 </div>
 
@@ -66,7 +66,8 @@
 	<div id="drop_over">Drop files here!</div>
 </div>
 
-<script language="javascript" type="text/javascript" src="./js/interact.js"></script>
+<script language="javascript" type="text/javascript" src="./js/selector.js"></script>
+<script language="javascript" type="text/javascript" src="./js/interact.min.js"></script>
 <script language="javascript" type="text/javascript" src="./js/dragging.js"></script>
 <script language="javascript" type="text/javascript" src="./js/fileLoad.js"></script>
 

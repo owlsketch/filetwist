@@ -10,7 +10,7 @@
 		if(typeof FileReader !== "undefined") {
 			var container = document.createElement("div");
 			container.className = "container animated fadeIn";
-
+			
 			//need to pass container to our function to set up dragging
 			setupDragging(container);
 							
@@ -110,6 +110,7 @@
 		if(typeof files !== undefined) {
 			//traverse through all our files
 			for(var i = 0; i < files.length; i++) {
+				//used to determine the offset for when absolute positioning
 				uploadFiles(files[i]);
 			}
 			//if any images on board
