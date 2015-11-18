@@ -13,6 +13,7 @@
 	
 			var move = document.createElement("div");
 			move.className = "move";
+			//move.className = " hide";
 			var moveIcon = document.createElement("i");
 			moveIcon.className = "fa fa-arrows fa-fw";
 			move.appendChild(moveIcon);
@@ -78,6 +79,7 @@
 				}(file));
 				reader.readAsDataURL(file);
 				container.appendChild(vid);
+				container.appendChild(move);
 				drop_area.appendChild(container);
 			}
 			else if((/text/i).test(file.type)){ //txt
@@ -104,6 +106,7 @@
 				doc.appendChild(par);
 				//doc.appendChild(format);
 				container.appendChild(doc);
+				container.appendChild(move);
 				drop_area.appendChild(container);
 				
 			}

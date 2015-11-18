@@ -15,7 +15,8 @@ var setupDragging = function(container) {
 		autoScroll: true,
 		// call this function on every dragmove event
 		onmove: dragMoveListener,
-	});
+	})
+	.allowFrom('.move');
 
 	/*
 	if(presentAction !== 'transform') { 
