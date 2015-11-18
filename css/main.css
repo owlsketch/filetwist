@@ -50,6 +50,10 @@ html, body, ul, li, p , pre{
 	color: #5050B2;
 }
 
+#sidebar #delete.active{
+	color: #D44440;
+}
+
 #sidebar > ul > li > ul > li {
 	margin-left: 2.25em;
 	font-size: .9em;
@@ -72,7 +76,7 @@ html, body, ul, li, p , pre{
 	height: 100%;
 }
 
-#sidebar #transform, #sidebar #draw{
+#sidebar .parent {
 	margin-bottom: 0.2em;
 }
 

@@ -41,7 +41,7 @@
 		</div>
 	</li>
 	<li onclick="currentAction('navigate', this);"><i class="fa fa-arrows fa-fw"></i> NAVIGATE</li>
-	<li onclick="currentAction('transform', this);"><i class="fa fa-expand fa-fw"></i> TRANSFORM</li>
+	<li class="parent" onclick="currentAction('transform', this);"><i class="fa fa-expand fa-fw"></i> TRANSFORM</li>
 	<li id="transform_children">
 		<ul> 
 			<li onclick="currentAction('move', this);">MOVE</li>
@@ -50,7 +50,7 @@
 		</ul>
 	</li>
 	<li onclick="currentAction('notes', this);"><i class="fa fa-sticky-note-o fa-fw"></i> NOTES</li>
-	<li onclick="currentAction('draw', this);"><i class="fa fa-pencil-square-o fa-fw"></i> DRAW</li>
+	<li class="parent" onclick="currentAction('draw', this);"><i class="fa fa-pencil-square-o fa-fw"></i> DRAW</li>
 	<li>
 		<ul> 
 			<li onclick="currentAction('color', this);" >COLOR</li>
@@ -58,7 +58,7 @@
 			<li onclick="currentAction('erase', this);" >ERASE</li>
 		</ul>
 	</li>
-	<li onclick="currentAction('delete', this);"><i class="fa fa-trash-o fa-fw"></i> DELETE</li>
+	<li id="delete" onclick="currentAction('delete', this);"><i class="fa fa-trash-o fa-fw"></i> DELETE</li>
 </ul>
 </div>
 
