@@ -31,10 +31,6 @@ html, body, ul, li, p , pre{
 	margin-bottom: 1.2em;
 }
 
-.fa {
-	vertical-align: .1em;
-}
-
 #sidebar > ul > li{
 	display:inline-block;
 	margin-left: 2em;
@@ -122,6 +118,11 @@ html, body, ul, li, p , pre{
 	position: static;
 	float: left;
 }
+
+.fa {
+	vertical-align: .1em;
+}
+
 
 .notes {
 	background-color: #28282F;

@@ -10,6 +10,12 @@
 		if(typeof FileReader !== "undefined") {
 			var container = document.createElement("div");
 			container.className = "container animated fadeIn";
+	
+			var move = document.createElement("div");
+			move.className = "move";
+			var moveIcon = document.createElement("i");
+			moveIcon.className = "fa fa-arrows fa-fw";
+			move.appendChild(moveIcon);
 			
 			//need to pass container to our function to set up dragging
 			setupDragging(container);
@@ -44,6 +50,7 @@
 				}(file));
 				reader.readAsDataURL(file);
 				container.appendChild(img);
+				container.appendChild(move);
 				drop_area.appendChild(container);
 			}
 			else if((/video/i).test(file.type)) {
@@ -101,6 +108,7 @@
 				
 			}
 			else {
+				alert("We're sorry. We don't support that format at the moment :(");
 				//do nothing for now.	
 			}
 		}

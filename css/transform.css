@@ -1,0 +1,30 @@
+.container i {
+	position: absolute;
+	font-size: 2em;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.move {
+	width: 3em;
+	height: 3em;
+
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	margin-left: -1.5em;
+	margin-top: -1.5em;
+
+	background-color: #28282F;
+	color: #fff;
+}
+
+.scale {
+
+}
+
+.rotate {
+
+}
