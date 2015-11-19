@@ -12,14 +12,18 @@ html, body, ul, li, p , pre{
 	list-style: none;
 }
 
+.hide {
+	display: none;
+}
+
 #sidebar {
-	color: #F2F1E7;
+	color: #F2F1E9;
 	background-color: #28282F;
 	width: 11em;
 	height: 100%;
 
 	position: fixed;
-	z-index: 1;
+	z-index: 999; 
 
 	-webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
 	-moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.3);
@@ -32,7 +36,7 @@ html, body, ul, li, p , pre{
 }
 
 #sidebar > ul > li{
-	display:inline-block;
+	display: inline-block;
 	margin-left: 2em;
 	margin-bottom: 1.5em;
 }
@@ -97,57 +101,13 @@ html, body, ul, li, p , pre{
 }
 
 .container {
-	/*
-	float: left;
-	Might need to have an initial class
-	that centers on start, and then replacing
-	it when object drags and moves to a new
-	position on the cavas.
-	*/
 	position: absolute;
 	display: inline;
 	top: 0em;
 	left: 11em;
 }
 
-.containerGrouped {
-	/*This resolves our overlapping issue, if 
-	more than one file is loaded, they temporarily
-	float left until first dragged around. 
-	*/
-	position: static;
-	float: left;
-}
-
 .fa {
+	/*.fa refers to our icons*/
 	vertical-align: .1em;
-}
-
-
-.notes {
-	background-color: #28282F;
-	color: #ffffff;
-	width: 18.5em;
-	font-family: Calibri, sans-serif;
-	
-	padding: 1em;
-
-	resize: both;
-	overflow: hidden;
-}
-
-.noteText {
-	font-family: Calibri, sans-serif;
-	font-size: 12px;
-
-	width: 100%;
-	white-space: pre-wrap;
-	white-space: -moz-pre-wrap !important;
-	white-space: -pre-wrap;
-
-	height: 12em;
-}
-
-.hide {
-	display: none;
 }

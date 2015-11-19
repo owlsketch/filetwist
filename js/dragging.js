@@ -4,7 +4,6 @@ var setupDragging = function(container) {
 		enabled: true,
 		// enable inertial throwing
 		inertia: true,
-
 		// keep the element within the area of it's parent
 		restrict: {
 			restriction: "parent",
@@ -16,16 +15,7 @@ var setupDragging = function(container) {
 		// call this function on every dragmove event
 		onmove: dragMoveListener,
 	})
-	.allowFrom('.move');
-
-	/*
-	if(presentAction !== 'transform') { 
-		interact(container).draggable({enabled: true});	
-	}
-	else {
-		interact(container).draggable({enabled: false});	
-	}
-	*/
+	.allowFrom('.move'); //only draggable from child element with class .move
 
 	function dragMoveListener (event) {
 		var target = event.target,

@@ -6,14 +6,13 @@
 	var drop_over = document.getElementById("drop_over");
 
 	function uploadFiles(file) {
-		//if browser supports FileReader
 		if(typeof FileReader !== "undefined") {
 			var container = document.createElement("div");
 			container.className = "container animated fadeIn";
-	
+
+			//controls that container will need
 			var move = document.createElement("div");
 			move.className = "move hide";
-
 			var moveIcon = document.createElement("i");
 			moveIcon.className = "fa fa-arrows fa-fw";
 			move.appendChild(moveIcon);
@@ -29,10 +28,7 @@
 				reader.onload = (function(a_file) {
 					return function(e) {
 						img.onload = function() {
-							//constraints for upload:
-							//image width or height can not be greater than half of the available area
-
-							//need to update parent's container size
+							//image constraints
 							if(img.width > 416) {
 								img.style.width = "26em";
 							}
@@ -51,8 +47,6 @@
 				}(file));
 				reader.readAsDataURL(file);
 				container.appendChild(img);
-				container.appendChild(move);
-				drop_area.appendChild(container);
 			}
 			else if((/video/i).test(file.type)) {
 				var vid = document.createElement("video");
@@ -64,23 +58,10 @@
 						vid.setAttribute("controls", "controls");
 						vid.setAttribute("loop", true);
 						vid.setAttribute("width", "300");
-
-						/* Look into MediaAPI, onload doesn't work
-						vid.onload = function() {
-							if(vid.width > 416) {
-								vid.style.width = "26em";
-							}
-							else if(vid.height > 800) {
-								vid.style.height = "50em";
-							}
-						};
-						*/
 					};
 				}(file));
 				reader.readAsDataURL(file);
 				container.appendChild(vid);
-				container.appendChild(move);
-				drop_area.appendChild(container);
 			}
 			else if((/text/i).test(file.type)){ //txt
 				var doc = document.createElement("div");
@@ -88,6 +69,8 @@
 				var par = document.createElement("pre");
 
 				doc.className = "notes";
+
+				//file title
 				//create a regex that filters out .txt and .pdf
 				header.innerHTML = file.name;
 
@@ -101,19 +84,18 @@
 				}(file));
 	
 				reader.readAsBinaryString(file);
-
 				doc.appendChild(header);
 				doc.appendChild(par);
-				//doc.appendChild(format);
 				container.appendChild(doc);
-				container.appendChild(move);
-				drop_area.appendChild(container);
-				
 			}
 			else {
-				alert("We're sorry. We don't support that format at the moment :(");
+				alert("We're sorry. We don't support this format at the moment.");
 				//do nothing for now.	
+				return;
 			}
+
+			container.appendChild(move);
+			drop_area.appendChild(container);
 		}
 	};
 
@@ -126,14 +108,17 @@
 			}
 			//if any images on board
 			if(drop_area.getElementsByClassName("container").length > 0) {
-				drop_over.className += " hide";
+				//need to ensure drop_over doesn't already have the hide class
+				if(drop_over.className.length === 0) {
+					drop_over.className = "hide";
+				}
 			}
 			else {
-				drop_over.className -= " hide";
+				drop_over.className = "";
 			}
 		}
 		else {
-			console.log("No support for FILE API");	
+			alert("Unfortunately, the browser you are currently using does not support the File API that helps this web app function");
 		}
 	};
 

@@ -12,9 +12,8 @@ var currentAction = function (action, object) {
 	presentAction.type.className += " active";
 
 	//current action
-	if(presentAction.id === "transform") {
-		//remove hiding from transform element
-		//get all child elements and remove their child hidden class	
+	if(presentAction.id === "transform" || presentAction.id === "move") {
+		//get the move element from every container and make it visible
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
 			var controls = containers[i].getElementsByClassName("move");
@@ -24,8 +23,8 @@ var currentAction = function (action, object) {
 			}
 		}
 	}
-	else if (pastAction === "transform") {
-		//append hide
+	else if (pastAction === "transform" || pastAction === "move") {
+		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
 			var controls = containers[i].getElementsByClassName("move");

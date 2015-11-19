@@ -1,0 +1,23 @@
+.notes {
+	background-color: #28282F;
+	color: #ffffff;
+	width: 18.5em;
+	font-family: Calibri, sans-serif;
+	
+	padding: 1em;
+
+	resize: both;
+	overflow: hidden;
+}
+
+.noteText {
+	font-family: Calibri, sans-serif;
+	font-size: 12px;
+
+	width: 100%;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap !important;
+	white-space: -pre-wrap;
+
+	height: 12em;
+}
