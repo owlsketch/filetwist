@@ -17,7 +17,7 @@ var currentAction = function (action, object) {
 		//get all child elements and remove their child hidden class	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var controls = containers[i].getElementsByTagName("div");
+			var controls = containers[i].getElementsByClassName("move");
 			for(var j = 0; j < controls.length; j++) {
 				controls[j].classList.remove("hide");
 				controls[j].className += " active";
@@ -28,7 +28,7 @@ var currentAction = function (action, object) {
 		//append hide
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var controls = containers[i].getElementsByTagName("div");
+			var controls = containers[i].getElementsByClassName("move");
 			for(var j = 0; j < controls.length; j++) {
 				controls[j].classList.remove("active");
 				controls[j].className += " hide";

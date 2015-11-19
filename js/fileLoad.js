@@ -13,6 +13,7 @@
 	
 			var move = document.createElement("div");
 			move.className = "move hide";
+
 			var moveIcon = document.createElement("i");
 			moveIcon.className = "fa fa-arrows fa-fw";
 			move.appendChild(moveIcon);
