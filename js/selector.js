@@ -12,7 +12,45 @@ var currentAction = function (action, object) {
 	presentAction.type.className += " active";
 
 	//current action
-	if(presentAction.id === "transform" || presentAction.id === "move") {
+	if(presentAction.id === "transform") {
+		//get the move element from every container and make it visible
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var controls = containers[i].getElementsByClassName("move");
+			var scale = containers[i].getElementsByClassName("scale");
+			var rotate = containers[i].getElementsByClassName("rotate");
+			for(var j = 0; j < controls.length; j++) {
+				controls[j].classList.remove("hide");
+				scale[j].classList.remove("hide");
+				rotate[j].classList.remove("hide");
+
+				controls[j].className += " active";
+				scale[j].className += " active";
+				rotate[j].className += " active";
+			}
+		}
+	}
+	else if (pastAction === "transform") {
+		//get the move element from every container and make it invisible	
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var controls = containers[i].getElementsByClassName("move");
+			var scale = containers[i].getElementsByClassName("scale");
+			var rotate = containers[i].getElementsByClassName("rotate");
+			for(var j = 0; j < controls.length; j++) {
+				controls[j].classList.remove("active");
+				scale[j].classList.remove("active");
+				rotate[j].classList.remove("active");
+				
+				controls[j].className += " hide";
+				scale[j].className += " hide";
+				rotate[j].className += " hide";
+			}
+		}
+	}
+
+	//current action
+	if(presentAction.id === "move") {
 		//get the move element from every container and make it visible
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
@@ -23,7 +61,7 @@ var currentAction = function (action, object) {
 			}
 		}
 	}
-	else if (pastAction === "transform" || pastAction === "move") {
+	else if (pastAction === "move") {
 		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
@@ -31,6 +69,54 @@ var currentAction = function (action, object) {
 			for(var j = 0; j < controls.length; j++) {
 				controls[j].classList.remove("active");
 				controls[j].className += " hide";
+			}
+		}
+	}
+
+	//current action
+	if(presentAction.id === "scale") {
+		//get the move element from every container and make it visible
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var scale = containers[i].getElementsByClassName("scale");
+			for(var j = 0; j < scale.length; j++) {
+				scale[j].classList.remove("hide");
+				scale[j].className += " active";
+			}
+		}
+	}
+	else if (pastAction === "scale") {
+		//get the move element from every container and make it invisible	
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var scale = containers[i].getElementsByClassName("scale");
+			for(var j = 0; j < scale.length; j++) {
+				scale[j].classList.remove("active");
+				scale[j].className += " hide";
+			}
+		}
+	}
+
+	//current action
+	if(presentAction.id === "rotate") {
+		//get the move element from every container and make it visible
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var rotate = containers[i].getElementsByClassName("rotate");
+			for(var j = 0; j < rotate.length; j++) {
+				rotate[j].classList.remove("hide");
+				rotate[j].className += " active";
+			}
+		}
+	}
+	else if (pastAction === "rotate") {
+		//get the move element from every container and make it invisible	
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var rotate = containers[i].getElementsByClassName("rotate");
+			for(var j = 0; j < rotate.length; j++) {
+				rotate[j].classList.remove("active");
+				rotate[j].className += " hide";
 			}
 		}
 	}

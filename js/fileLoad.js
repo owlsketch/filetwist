@@ -16,7 +16,18 @@
 			var moveIcon = document.createElement("i");
 			moveIcon.className = "fa fa-arrows fa-fw";
 			move.appendChild(moveIcon);
+
+			var scale = document.createElement("div");
+			scale.className = "scale hide";
+			var scaleIcon = document.createElement("i");
+			scaleIcon.className = "fa fa-expand fa-fw";
+			scale.appendChild(scaleIcon);
 			
+			var rotate = document.createElement("div");
+			rotate.className = "rotate hide";
+			var rotateIcon = document.createElement("i");
+			rotateIcon.className = "fa fa-rotate-left fa-fw";
+			rotate.appendChild(rotateIcon);
 			//need to pass container to our function to set up dragging
 			setupDragging(container);
 							
@@ -95,6 +106,8 @@
 			}
 
 			container.appendChild(move);
+			container.appendChild(scale);
+			container.appendChild(rotate);
 			drop_area.appendChild(container);
 		}
 	};
