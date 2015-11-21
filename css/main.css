@@ -3,9 +3,10 @@ html, body {
 	font-family: 'Oswald', sans-serif;
 	font-size: 16px;
 	color: #28282F;
+	overflow: hidden;
 }
 
-html, body, ul, li, p , pre{
+html, body, ul, li, p, pre{
 	margin: 0;
 	padding: 0;
 	text-decoration: none;

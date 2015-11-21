@@ -120,5 +120,30 @@ var currentAction = function (action, object) {
 			}
 		}
 	}
+	
+	
+	//current action
+	if(presentAction.id === "delete") {
+		//get the move element from every container and make it visible
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var deleteList = containers[i].getElementsByClassName("delete");
+			for(var j = 0; j < deleteList.length; j++) {
+				deleteList[j].classList.remove("hide");
+				deleteList[j].className += " active";
+			}
+		}
+	}
+	else if (pastAction === "delete") {
+		//get the move element from every container and make it invisible	
+		var containers = document.getElementsByClassName("container");
+		for(var i = 0; i < containers.length; i++) {
+			var deleteList = containers[i].getElementsByClassName("delete");
+			for(var j = 0; j < deleteList.length; j++) {
+				deleteList[j].classList.remove("active");
+				deleteList[j].className += " hide";
+			}
+		}
+	}
 }
 

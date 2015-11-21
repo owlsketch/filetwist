@@ -7,6 +7,7 @@
 
 	function uploadFiles(file) {
 		if(typeof FileReader !== "undefined") {
+			console.log(file.type);
 			var container = document.createElement("div");
 			container.className = "container animated fadeIn";
 
@@ -29,7 +30,24 @@
 			rotateIcon.className = "fa fa-rotate-left fa-fw";
 			rotate.appendChild(rotateIcon);
 			//need to pass container to our function to set up dragging
+
+
+			var deleteElement = document.createElement("div");
+			deleteElement.className = "delete hide";
+	
+			//need onclick function execution to delete
+			deleteElement.onclick = function() {
+				this.parentElement.remove();
+			};
+
+			var deleteIcon = document.createElement("i");
+			deleteIcon.className = "fa fa-times fa-fw";
+			deleteElement.appendChild(deleteIcon);
+
+
 			setupDragging(container);
+
+
 							
 			if((/image/i).test(file.type)) { //if file type is image
 
@@ -74,10 +92,18 @@
 				reader.readAsDataURL(file);
 				container.appendChild(vid);
 			}
-			else if((/text/i).test(file.type)){ //txt
+			else if((/text/i).test(file.type) || (/javascript/i).test(file.type)){ //txt
+				//c code appears to ignore <> content
+				//&lt, &gt instead of <, >
 				var doc = document.createElement("div");
 				var header = document.createElement("h2");
-				var par = document.createElement("pre");
+
+				if((/javascript/i).test(file.type) || (/x-csrc/i).test(file.type)) {
+					var par = document.createElement("code");
+				}
+				else {
+					var par = document.createElement("pre");
+				}
 
 				doc.className = "notes";
 
@@ -108,6 +134,7 @@
 			container.appendChild(move);
 			container.appendChild(scale);
 			container.appendChild(rotate);
+			container.appendChild(deleteElement);
 			drop_area.appendChild(container);
 		}
 	};

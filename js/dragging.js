@@ -16,6 +16,13 @@ var setupDragging = function(container) {
 		onmove: dragMoveListener,
 	})
 	.allowFrom('.move') //only draggable from child element with class .move
+	/*
+	.resizable( {
+		preserveAspectRatio: false,
+		edges: {right: true, bottom: true},
+		
+	}).allowFrom('.scale')
+	*/
 
 
 
