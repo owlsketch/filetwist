@@ -125,6 +125,72 @@
 				doc.appendChild(par);
 				container.appendChild(doc);
 			}
+
+			else if((/audio/i).test(file.type)) {
+				var audio = document.createElement("audio");	
+				
+				var reader = new FileReader();
+				reader.onload = (function(a_file){
+					return function(e){
+						audio.src = e.target.result;
+						audio.setAttribute("controls", "controls");
+					};
+				}(file));
+
+				reader.readAsDataURL(file);
+	
+				container.appendChild(audio);
+			}
+			/*
+			else if((/x-shockwave-flash/i).test(file.type)) {
+				var object = document.createElement("object");
+				//object.data = file.name;
+				
+
+				object.type = file.type;
+				object.width = "10";
+				object.height = "10";
+
+				var movie = document.createElement("param");
+				movie.name = "movie";
+				movie.value = file.name;
+
+				var quality = document.createElement("param");
+				quality.name = "quality";
+				quality.value = "high";
+				
+				var reader = new FileReader();
+				reader.onload = (function(a_file){
+					return function(e){
+						object.data = e.target.result;
+						movie.value = e.target.result;
+						console.log(e.target.result);
+					};
+				}(file));
+				reader.readAsDataURL(file);
+				
+				object.appendChild(movie);
+				object.appendChild(quality);
+				container.appendChild(object);
+
+				//or maybe this
+				var embed = document.createElement("embed");
+				embed.width = "240px";
+				embed.height = "200px";
+				embed.name = "plugin"
+				embed.type = file.type;
+
+				var reader = new FileReader();
+				reader.onload = (function(a_file){
+					return function(e){
+						embed.src = e.target.result;
+					};
+				}(file));
+				reader.readAsArrayBuffer(file);
+
+				container.appendChild(embed);
+			}
+			*/
 			else {
 				alert("We're sorry. We don't support this format at the moment.");
 				//do nothing for now.	
