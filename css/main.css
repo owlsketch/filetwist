@@ -47,14 +47,6 @@ html, body, ul, li, p, pre{
 	cursor: pointer;
 }
 
-.active {
-	color: #5050B2;
-}
-
-#sidebar #delete.active{
-	color: #D44440;
-}
-
 #sidebar > ul > li > ul > li {
 	margin-left: 2.25em;
 	font-size: .9em;
@@ -112,3 +104,12 @@ html, body, ul, li, p, pre{
 	/*.fa refers to our icons*/
 	vertical-align: .1em;
 }
+
+.active {
+	color: #5050B2;
+}
+
+#sidebar #delete.active{
+	color: #D44440;
+}
+

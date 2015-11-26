@@ -9,7 +9,13 @@ var currentAction = function (action, object) {
 
 	presentAction.id = action;
 	presentAction.type = object;
-	presentAction.type.className += " active";
+
+	if(presentAction.type.className.length !== 0) {
+		presentAction.type.className += " active";
+	}
+	else {
+		presentAction.type.className = "active";
+	}
 
 	//current action
 	if(presentAction.id === "transform") {
@@ -61,7 +67,7 @@ var currentAction = function (action, object) {
 			}
 		}
 	}
-	else if (pastAction === "move") {
+	else if (pastAction === "move" && presentAction.id !== "transform") {
 		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
@@ -85,7 +91,7 @@ var currentAction = function (action, object) {
 			}
 		}
 	}
-	else if (pastAction === "scale") {
+	else if (pastAction === "scale" && presentAction.id !== "transform") {
 		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
@@ -109,7 +115,7 @@ var currentAction = function (action, object) {
 			}
 		}
 	}
-	else if (pastAction === "rotate") {
+	else if (pastAction === "rotate" && presentAction.id !== "transform") {
 		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {

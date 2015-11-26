@@ -108,15 +108,16 @@
 				doc.className = "notes";
 
 				//file title
-				//create a regex that filters out .txt and .pdf
-				header.innerHTML = file.name;
+				//create a regex that filters out file type 
+				var regex = /\.[a-zA-Z]+/i;
+				header.innerHTML = file.name.replace(regex, "");
 
 				//var end = parseInt(opt_stopByte) || file.size() - 1;
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
 						par.className = "noteText";
-						par.innerHTML = e.target.result.replace(/\r/g, "\n");
+						par.innerHTML = e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;");//.replace(/\r/g, "\n");
 					};
 				}(file));
 	
