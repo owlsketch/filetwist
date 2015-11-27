@@ -22,6 +22,9 @@ var currentAction = function (action, object) {
 		//get the move element from every container and make it visible
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
+			interact(containers[i]).draggable({enabled: true});
+			interact(containers[i]).resizable({enabled: true});
+
 			var move = containers[i].getElementsByClassName("moveHandle");
 			var scale = containers[i].getElementsByClassName("scale");
 			var rotate = containers[i].getElementsByClassName("rotate");
@@ -39,6 +42,9 @@ var currentAction = function (action, object) {
 	else if (pastAction === "transform" && presentAction.id !== "transform") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
+			interact(containers[i]).draggable({enabled: false});
+			interact(containers[i]).resizable({enabled: false});
+
 			var move = containers[i].getElementsByClassName("moveHandle");
 			var scale = containers[i].getElementsByClassName("scale");
 			var rotate = containers[i].getElementsByClassName("rotate");
