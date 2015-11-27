@@ -55,7 +55,8 @@
 
 
 			setupDragging(container);
-
+			//can not have more than two interaction elements at a given time
+			//setupResizing(container);
 
 							
 			if((/image/i).test(file.type)) { //if file type is image
