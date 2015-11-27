@@ -54,7 +54,7 @@ html, body, ul, li, p, pre{
 }
 
 #sidebar > ul > li > ul > li:hover {
-	color: #6767E5;
+	color: #5050B2;
 }
 
 #sidebar > ul > li:last-child:hover {
@@ -93,23 +93,17 @@ html, body, ul, li, p, pre{
 	user-select: none;
 }
 
-.container {
-	position: absolute;
-	display: inline;
-	top: 0em;
-	left: 11em;
-}
-
 .fa {
 	/*.fa refers to our icons*/
 	vertical-align: .1em;
 }
 
-.active {
+#sidebar .activeA {
+	/*active Action*/
 	color: #5050B2;
 }
 
-#sidebar #delete.active{
+#sidebar #delete.activeA{
 	color: #D44440;
 }
 

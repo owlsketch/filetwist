@@ -1,7 +1,7 @@
 var presentAction = {id: "", type: null}; 
 var currentAction = function (action, object) {
 	if(presentAction.type !== null) {
-	presentAction.type.className = presentAction.type.className.replace( /(?:^|\s)active(?!\S)/g , '');
+	presentAction.type.className = presentAction.type.className.replace( /(?:^|\s)activeA(?!\S)/g , '');
 	}
 
 	//past action
@@ -11,10 +11,10 @@ var currentAction = function (action, object) {
 	presentAction.type = object;
 
 	if(presentAction.type.className.length !== 0) {
-		presentAction.type.className += " active";
+		presentAction.type.className += " activeA";
 	}
 	else {
-		presentAction.type.className = "active";
+		presentAction.type.className = "activeA";
 	}
 
 	//current action
@@ -22,131 +22,118 @@ var currentAction = function (action, object) {
 		//get the move element from every container and make it visible
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var controls = containers[i].getElementsByClassName("move");
+			var move = containers[i].getElementsByClassName("moveHandle");
 			var scale = containers[i].getElementsByClassName("scale");
 			var rotate = containers[i].getElementsByClassName("rotate");
-			for(var j = 0; j < controls.length; j++) {
-				controls[j].classList.remove("hide");
+			for(var j = 0; j < move.length; j++) {
+				move[j].classList.remove("hide");
 				scale[j].classList.remove("hide");
 				rotate[j].classList.remove("hide");
 
-				controls[j].className += " active";
-				scale[j].className += " active";
-				rotate[j].className += " active";
+				move[j].className += " activeA";
+				scale[j].className += " activeA";
+				rotate[j].className += " activeA";
 			}
 		}
 	}
 	else if (pastAction === "transform") {
-		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var controls = containers[i].getElementsByClassName("move");
+			var move = containers[i].getElementsByClassName("moveHandle");
 			var scale = containers[i].getElementsByClassName("scale");
 			var rotate = containers[i].getElementsByClassName("rotate");
-			for(var j = 0; j < controls.length; j++) {
-				controls[j].classList.remove("active");
-				scale[j].classList.remove("active");
-				rotate[j].classList.remove("active");
+			for(var j = 0; j < move.length; j++) {
+				move[j].classList.remove("activeA");
+				scale[j].classList.remove("activeA");
+				rotate[j].classList.remove("activeA");
 				
-				controls[j].className += " hide";
+				move[j].className += " hide";
 				scale[j].className += " hide";
 				rotate[j].className += " hide";
 			}
 		}
 	}
 
-	//current action
-	if(presentAction.id === "move") {
-		//get the move element from every container and make it visible
+	if(presentAction.id === "move" && pastAction !== "move") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var controls = containers[i].getElementsByClassName("move");
-			for(var j = 0; j < controls.length; j++) {
-				controls[j].classList.remove("hide");
-				controls[j].className += " active";
+			var move = containers[i].getElementsByClassName("moveHandle");
+			for(var j = 0; j < move.length; j++) {
+				move[j].classList.remove("hide");
+				move[j].className += " activeA";
 			}
 		}
 	}
 	else if (pastAction === "move" && presentAction.id !== "transform") {
-		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var controls = containers[i].getElementsByClassName("move");
-			for(var j = 0; j < controls.length; j++) {
-				controls[j].classList.remove("active");
-				controls[j].className += " hide";
+			var move = containers[i].getElementsByClassName("moveHandle");
+			for(var j = 0; j < move.length; j++) {
+				move[j].classList.remove("activeA");
+				move[j].className += " hide";
 			}
 		}
 	}
 
-	//current action
-	if(presentAction.id === "scale") {
-		//get the move element from every container and make it visible
+	if(presentAction.id === "scale" && pastAction !== "scale") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var scale = containers[i].getElementsByClassName("scale");
+			var scale = containers[i].getElementsByClassName("scaleHandle");
 			for(var j = 0; j < scale.length; j++) {
 				scale[j].classList.remove("hide");
-				scale[j].className += " active";
+				scale[j].className += " activeA";
 			}
 		}
 	}
 	else if (pastAction === "scale" && presentAction.id !== "transform") {
-		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var scale = containers[i].getElementsByClassName("scale");
+			var scale = containers[i].getElementsByClassName("scaleHandle");
 			for(var j = 0; j < scale.length; j++) {
-				scale[j].classList.remove("active");
+				scale[j].classList.remove("activeA");
 				scale[j].className += " hide";
 			}
 		}
 	}
 
-	//current action
-	if(presentAction.id === "rotate") {
-		//get the move element from every container and make it visible
+	if(presentAction.id === "rotate" && pastAction !== "rotate") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var rotate = containers[i].getElementsByClassName("rotate");
+			var rotate = containers[i].getElementsByClassName("rotateHandle");
 			for(var j = 0; j < rotate.length; j++) {
 				rotate[j].classList.remove("hide");
-				rotate[j].className += " active";
+				rotate[j].className += " activeA";
 			}
 		}
 	}
 	else if (pastAction === "rotate" && presentAction.id !== "transform") {
-		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
-			var rotate = containers[i].getElementsByClassName("rotate");
+			var rotate = containers[i].getElementsByClassName("rotateHandle");
 			for(var j = 0; j < rotate.length; j++) {
-				rotate[j].classList.remove("active");
+				rotate[j].classList.remove("activeA");
 				rotate[j].className += " hide";
 			}
 		}
 	}
 	
 	
-	//current action
-	if(presentAction.id === "delete") {
-		//get the move element from every container and make it visible
+	if(presentAction.id === "delete" && pastAction !== "delete") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
 			var deleteList = containers[i].getElementsByClassName("delete");
 			for(var j = 0; j < deleteList.length; j++) {
 				deleteList[j].classList.remove("hide");
-				deleteList[j].className += " active";
+				deleteList[j].className += " activeA";
 			}
 		}
 	}
 	else if (pastAction === "delete") {
-		//get the move element from every container and make it invisible	
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
 			var deleteList = containers[i].getElementsByClassName("delete");
 			for(var j = 0; j < deleteList.length; j++) {
-				deleteList[j].classList.remove("active");
+				deleteList[j].classList.remove("activeA");
 				deleteList[j].className += " hide";
 			}
 		}

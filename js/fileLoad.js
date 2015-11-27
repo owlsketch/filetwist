@@ -11,21 +11,30 @@
 			var container = document.createElement("div");
 			container.className = "container animated fadeIn";
 
+			var moveHandle = document.createElement("div");
+			moveHandle.className = "handle moveHandle hide";
+
 			//controls that container will need
 			var move = document.createElement("div");
-			move.className = "move hide";
+			move.className = "move";
 			var moveIcon = document.createElement("i");
 			moveIcon.className = "fa fa-arrows fa-fw";
 			move.appendChild(moveIcon);
 
+			var scaleHandle = document.createElement("div");
+			scaleHandle.className = "handle scaleHandle hide";
+
 			var scale = document.createElement("div");
-			scale.className = "scale hide";
+			scale.className = "scale scaleHandle hide";
 			var scaleIcon = document.createElement("i");
 			scaleIcon.className = "fa fa-expand fa-fw";
 			scale.appendChild(scaleIcon);
 			
+			var rotateHandle = document.createElement("div");
+			rotateHandle.className = "handle rotateHandle hide";
+
 			var rotate = document.createElement("div");
-			rotate.className = "rotate hide";
+			rotate.className = "rotate rotateHandle hide";
 			var rotateIcon = document.createElement("i");
 			rotateIcon.className = "fa fa-rotate-left fa-fw";
 			rotate.appendChild(rotateIcon);
@@ -198,8 +207,12 @@
 				return;
 			}
 
-			container.appendChild(move);
+			moveHandle.appendChild(move);
+			container.appendChild(moveHandle);
+
+			container.appendChild(scaleHandle);
 			container.appendChild(scale);
+			container.appendChild(rotateHandle);
 			container.appendChild(rotate);
 			container.appendChild(deleteElement);
 			drop_area.appendChild(container);

@@ -15,7 +15,8 @@ var setupDragging = function(container) {
 		// call this function on every dragmove event
 		onmove: dragMoveListener,
 	})
-	.allowFrom('.move') //only draggable from child element with class .move
+	.allowFrom('.moveHandle');
+	//.allowFrom('.move'); //only draggable from child element with class .move
 	/*
 	.resizable( {
 		preserveAspectRatio: false,
