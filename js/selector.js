@@ -1,4 +1,4 @@
-var presentAction = {id: "", type: null}; 
+var presentAction = {id: "", type: null }; 
 var currentAction = function (action, object) {
 	if(presentAction.type !== null) {
 	presentAction.type.className = presentAction.type.className.replace( /(?:^|\s)activeA(?!\S)/g , '');
@@ -64,6 +64,7 @@ var currentAction = function (action, object) {
 	if(presentAction.id === "move" && pastAction !== "move") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
+			interact(containers[i]).draggable({enabled: true});
 			var move = containers[i].getElementsByClassName("moveHandle");
 			for(var j = 0; j < move.length; j++) {
 				move[j].classList.remove("hide");
@@ -74,6 +75,7 @@ var currentAction = function (action, object) {
 	else if (pastAction === "move" && presentAction.id !== "transform" && presentAction.id !== "move") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
+			interact(containers[i]).draggable({enabled: false});
 			var move = containers[i].getElementsByClassName("moveHandle");
 			for(var j = 0; j < move.length; j++) {
 				move[j].classList.remove("activeA");
@@ -93,6 +95,7 @@ var currentAction = function (action, object) {
 	if(presentAction.id === "scale" && pastAction !== "scale") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
+			interact(containers[i]).resizable({enabled: true});
 			var scale = containers[i].getElementsByClassName("scaleHandle");
 			for(var j = 0; j < scale.length; j++) {
 				scale[j].classList.remove("hide");
@@ -103,6 +106,7 @@ var currentAction = function (action, object) {
 	else if (pastAction === "scale" && presentAction.id !== "transform" && presentAction.id !== "scale") {
 		var containers = document.getElementsByClassName("container");
 		for(var i = 0; i < containers.length; i++) {
+			interact(containers[i]).resizable({enabled: false});
 			var scale = containers[i].getElementsByClassName("scaleHandle");
 			for(var j = 0; j < scale.length; j++) {
 				scale[j].classList.remove("activeA");
