@@ -7,7 +7,6 @@ var setupControls = function(container) {
 		x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
 		y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-
 		// translate the element
 		//target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 		target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
@@ -56,8 +55,17 @@ var setupControls = function(container) {
 		target.style.width  = event.rect.width + 'px';
 		target.style.height = event.rect.height + 'px';
 
-		targetChild.style.width  = event.rect.width + 'px';
-		targetChild.style.height = event.rect.height + 'px';
+
+		//subtract 16px from padding for notes
+		//if child class is notes
+		if(targetChild.className === "notes"){
+			targetChild.style.width  = event.rect.width - 32 + 'px';
+			targetChild.style.height = event.rect.height - 32 + 'px';
+		}
+		else {
+			targetChild.style.width  = event.rect.width + 'px';
+			targetChild.style.height = event.rect.height + 'px';
+		}
 
 		// translate when resizing from top or left edges
 		x += event.deltaRect.left;

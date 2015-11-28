@@ -10,11 +10,17 @@ var currentAction = function (action, object) {
 	presentAction.id = action;
 	presentAction.type = object;
 
+	//if present element already has another class name
 	if(presentAction.type.className.length !== 0) {
 		presentAction.type.className += " activeA";
 	}
 	else {
 		presentAction.type.className = "activeA";
+	}
+
+	//how are we dealing with notes?
+	if(presentAction.id === "notes") {
+		
 	}
 
 	//current action
@@ -33,9 +39,15 @@ var currentAction = function (action, object) {
 				scale[j].classList.remove("hide");
 				rotate[j].classList.remove("hide");
 
+				if(pastAction !== "move") {
 				move[j].className += " activeA";
+				}
+				if(pastAction !== "scale") {
 				scale[j].className += " activeA";
+				}
+				if(pastAction !== "rotate") {
 				rotate[j].className += " activeA";
+				}
 			}
 		}
 	}

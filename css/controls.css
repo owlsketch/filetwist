@@ -70,10 +70,9 @@
 	cursor: pointer;
 
 	position: absolute;
-	top: 96%;
-	left: 98%;
-	margin-left: -.75em;
-	margin-top: -.75em;
+	left: 100%;
+	margin-left: -1em;
+	margin-top: -1em;
 
 	background-color: #28282F;
 	color: #fff;
@@ -87,10 +86,10 @@
 	cursor: pointer;
 
 	position: absolute;
-	top: 4%;
-	left: 98%;
-	margin-left: -.75em;
-	margin-top: -.75em;
+	top: 0%;
+	left: 100%;
+	margin-left: -1em;
+	margin-top: -.5em;
 
 	background-color: #28282F;
 	color: #fff;

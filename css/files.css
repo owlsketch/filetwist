@@ -4,10 +4,11 @@
 	width: 18.5em;
 	font-family: Calibri, sans-serif;
 	
-	padding: 1em;
+	padding: 1em; 
 
-	resize: both;
 	overflow: hidden;
+
+	resize: none;
 }
 
 .notes h2 {
