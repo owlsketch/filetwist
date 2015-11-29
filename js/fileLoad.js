@@ -1,219 +1,185 @@
 //http://robertnyman.com/html5/fileapi-upload/fileapi-upload.html
 //http://www.html5rocks.com/en/tutorials/file/dndfiles/
-(function() {
-	var files_uploaded = document.getElementById("files_uploaded");	
-	var drop_area = document.getElementById("drop_area");
-	var drop_over = document.getElementById("drop_over");
+	var elements = {};
+	elements.file_uplodaded = document.getElementById("files_uploaded");	
+	elements.drop_area = document.getElementById("drop_area");
+	elements.drop_over = document.getElementById("drop_over");
 
-	function uploadFiles(file) {
-		if(typeof FileReader !== "undefined") {
-			console.log(file.type);
-			var container = document.createElement("div");
-			container.className = "container animated fadeIn";
-
-			var moveHandle = document.createElement("div");
-			moveHandle.className = "handle moveHandle hide";
-
-			//controls that container will need
-			var move = document.createElement("div");
-			move.className = "move";
-			var moveIcon = document.createElement("i");
-			moveIcon.className = "fa fa-arrows fa-fw";
-			move.appendChild(moveIcon);
-
-			var scaleHandle = document.createElement("div");
-			scaleHandle.className = "handle scaleHandle hide";
-
-			var scale = document.createElement("div");
-			scale.className = "scale scaleHandle hide";
-			var scaleIcon = document.createElement("i");
-			scaleIcon.className = "fa fa-expand fa-fw";
-			scale.appendChild(scaleIcon);
+	//this function creates the container and all the icons an imported file is to have
+	function setupObject(object) {
+			object.container = document.createElement("div");
+			object.container.className = "container animated fadeIn";
 			
-			var rotateHandle = document.createElement("div");
-			rotateHandle.className = "handle rotateHandle hide";
+			//controls that object.container will need
+			object.moveHandle = document.createElement("div");
+			object.moveHandle.className = "handle moveHandle hide";
 
-			var rotate = document.createElement("div");
-			rotate.className = "rotate rotateHandle hide";
-			var rotateIcon = document.createElement("i");
-			rotateIcon.className = "fa fa-rotate-left fa-fw";
-			rotate.appendChild(rotateIcon);
-			//need to pass container to our function to set up dragging
+			object.move = document.createElement("div");
+			object.move.className = "move";
+			object.moveIcon = document.createElement("i");
+			object.moveIcon.className = "fa fa-arrows fa-fw";
+			object.move.appendChild(object.moveIcon);
+			object.moveHandle.appendChild(object.move);
 
+			object.scaleHandle = document.createElement("div");
+			object.scaleHandle.className = "handle scaleHandle hide";
 
-			var deleteElement = document.createElement("div");
-			deleteElement.className = "delete hide";
+			object.scale = document.createElement("div");
+			object.scale.className = "scale scaleHandle hide";
+			object.scaleIcon = document.createElement("i");
+			object.scaleIcon.className = "fa fa-expand fa-fw";
+			object.scale.appendChild(object.scaleIcon);
+			
+			object.rotateHandle = document.createElement("div");
+			object.rotateHandle.className = "handle rotateHandle hide";
+
+			object.rotate = document.createElement("div");
+			object.rotate.className = "rotate rotateHandle hide";
+			object.rotateIcon = document.createElement("i");
+			object.rotateIcon.className = "fa fa-rotate-left fa-fw";
+			object.rotate.appendChild(object.rotateIcon);
+
+			object.deleteElement = document.createElement("div");
+			object.deleteElement.className = "delete hide";
 	
 			//need onclick function execution to delete
-			deleteElement.onclick = function() {
+			object.deleteElement.onclick = function() {
 				this.parentElement.remove();
 			};
 
-			var deleteIcon = document.createElement("i");
-			deleteIcon.className = "fa fa-times fa-fw";
-			deleteElement.appendChild(deleteIcon);
+			object.deleteIcon = document.createElement("i");
+			object.deleteIcon.className = "fa fa-times fa-fw";
+			object.deleteElement.appendChild(object.deleteIcon);
+	}
 
-
-			setupControls(container);
-
-			if((/image/i).test(file.type)) { //if file type is image
-
-				var img = document.createElement("img");
+	function setupImage(file, object) {
+				object.img = document.createElement("img");
 
 				var reader = new FileReader();
 				reader.onload = (function(a_file) {
 					return function(e) {
-						img.onload = function() {
+						object.img.onload = function() {
 							//image constraints
-							if(img.width > 416) {
-								img.style.width = "26em";
+							if(object.img.width > 416) {
+								object.img.style.width = "26em";
 							}
-							else if(img.width < 100) {
-								img.style.width = "6.25em";
+							else if(object.img.width < 100) {
+								object.img.style.width = "6.25em";
 							}
-							else if(img.height > 800) {
-								img.style.height = "50em";
+							else if(object.img.height > 800) {
+								object.img.style.height = "50em";
 							}
-							else if(img.height < 100) {
-								img.style.height = "6.25em";
+							else if(object.img.height < 100) {
+								object.img.style.height = "6.25em";
 							}
 						};
-						img.src = e.target.result;
+						object.img.src = e.target.result;
 					};
 				}(file));
 				reader.readAsDataURL(file);
-				container.appendChild(img);
-			}
-			else if((/video/i).test(file.type)) {
-				var vid = document.createElement("video");
+				object.container.appendChild(object.img);
+	}
+
+	function setupVideo(file, object) {
+				object.vid = document.createElement("video");
 
 				var reader = new FileReader();
 				reader.onload = (function(a_file) {
 					return function(e) {
-						vid.src = e.target.result;
-						vid.setAttribute("controls", "controls");
-						vid.setAttribute("loop", true);
-						vid.setAttribute("width", "300");
+						object.vid.src = e.target.result;
+						object.vid.setAttribute("controls", "controls");
+						object.vid.setAttribute("loop", true);
+						object.vid.setAttribute("width", "300");
 					};
 				}(file));
 				reader.readAsDataURL(file);
-				container.appendChild(vid);
-			}
-			else if((/text/i).test(file.type) || (/javascript/i).test(file.type)){ //txt
+				object.container.appendChild(object.vid);
+	}
+
+	function setupNotes(file, object) {
 				//c code appears to ignore <> content
 				//&lt, &gt instead of <, >
-				var doc = document.createElement("div");
-				var header = document.createElement("h2");
+				object.doc = document.createElement("div");
+				object.header = document.createElement("h2");
 
 				if((/javascript/i).test(file.type) || (/x-csrc/i).test(file.type)) {
-					var par = document.createElement("code");
+					object.par = document.createElement("code");
 				}
 				else {
-					var par = document.createElement("pre");
+					object.par = document.createElement("pre");
 				}
 
-				doc.className = "notes";
+				object.doc.className = "notes";
 
 				//file title
 				//create a regex that filters out file type 
-				var regex = /\.[a-zA-Z]+/i;
-				header.innerHTML = file.name.replace(regex, "");
+				object.regex = /\.[a-zA-Z]+/i;
+				object.header.innerHTML = file.name.replace(object.regex, "");
 
 				//var end = parseInt(opt_stopByte) || file.size() - 1;
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
-						par.className = "noteText";
-						par.innerHTML = e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;");//.replace(/\r/g, "\n");
+						object.par.className = "noteText";
+						object.par.innerHTML = e.target.result.replace(/</g, "&lt;").replace(/>/g, "&gt;");//.replace(/\r/g, "\n");
 					};
 				}(file));
 	
 				reader.readAsBinaryString(file);
-				doc.appendChild(header);
-				doc.appendChild(par);
-				container.appendChild(doc);
-			}
+				object.doc.appendChild(object.header);
+				object.doc.appendChild(object.par);
+				object.container.appendChild(object.doc);
 
-			else if((/audio/i).test(file.type)) {
-				var audio = document.createElement("audio");	
+	}
+
+	function setupAudio(file, object) {
+				object.audio = document.createElement("audio");	
 				
 				var reader = new FileReader();
 				reader.onload = (function(a_file){
 					return function(e){
-						audio.src = e.target.result;
-						audio.setAttribute("controls", "controls");
+						object.audio.src = e.target.result;
+						object.audio.setAttribute("controls", "controls");
 					};
 				}(file));
 
 				reader.readAsDataURL(file);
 	
-				container.appendChild(audio);
+				object.container.appendChild(object.audio);
+	}
+
+	function uploadFiles(file) {
+		if(typeof FileReader !== "undefined") {
+			var object = {};
+			setupObject(object);
+			setupControls(object.container);
+
+			if((/image/i).test(file.type)) { //if file type is image
+				setupImage(file, object);
 			}
-			/*
-			else if((/x-shockwave-flash/i).test(file.type)) {
-				var object = document.createElement("object");
-				//object.data = file.name;
-				
-
-				object.type = file.type;
-				object.width = "10";
-				object.height = "10";
-
-				var movie = document.createElement("param");
-				movie.name = "movie";
-				movie.value = file.name;
-
-				var quality = document.createElement("param");
-				quality.name = "quality";
-				quality.value = "high";
-				
-				var reader = new FileReader();
-				reader.onload = (function(a_file){
-					return function(e){
-						object.data = e.target.result;
-						movie.value = e.target.result;
-						console.log(e.target.result);
-					};
-				}(file));
-				reader.readAsDataURL(file);
-				
-				object.appendChild(movie);
-				object.appendChild(quality);
-				container.appendChild(object);
-
-				//or maybe this
-				var embed = document.createElement("embed");
-				embed.width = "240px";
-				embed.height = "200px";
-				embed.name = "plugin"
-				embed.type = file.type;
-
-				var reader = new FileReader();
-				reader.onload = (function(a_file){
-					return function(e){
-						embed.src = e.target.result;
-					};
-				}(file));
-				reader.readAsArrayBuffer(file);
-
-				container.appendChild(embed);
+			else if((/video/i).test(file.type)) {
+				setupVideo(file, object);
 			}
-			*/
+			else if((/text/i).test(file.type) || (/javascript/i).test(file.type)){ //txt
+				setupNotes(file,object);
+			}
+
+			else if((/audio/i).test(file.type)) {
+				setupAudio(file, object);
+			}
 			else {
 				alert("We're sorry. We don't support this format at the moment.");
 				//do nothing for now.	
 				return;
 			}
 
-			moveHandle.appendChild(move);
-			container.appendChild(moveHandle);
-
-			container.appendChild(scaleHandle);
-			container.appendChild(scale);
-			container.appendChild(rotateHandle);
-			container.appendChild(rotate);
-			container.appendChild(deleteElement);
-			drop_area.appendChild(container);
+			object.container.appendChild(object.moveHandle);
+			object.container.appendChild(object.scaleHandle);
+			object.container.appendChild(object.scale);
+			object.container.appendChild(object.rotateHandle);
+			object.container.appendChild(object.rotate);
+			object.container.appendChild(object.deleteElement);
+			elements.drop_area.appendChild(object.container);
 		}
 	};
 
@@ -225,14 +191,14 @@
 				uploadFiles(files[i]);
 			}
 			//if any images on board
-			if(drop_area.getElementsByClassName("container").length > 0) {
-				//need to ensure drop_over doesn't already have the hide class
-				if(drop_over.className.length === 0) {
-					drop_over.className = "hide";
+			if(elements.drop_area.getElementsByClassName("container").length > 0) {
+				//need to ensure elements.drop_over doesn't already have the hide class
+				if(elements.drop_over.className.length === 0) {
+					elements.drop_over.className = "hide";
 				}
 			}
 			else {
-				drop_over.className = "";
+				elements.drop_over.className = "";
 			}
 		}
 		else {
@@ -240,16 +206,16 @@
 		}
 	};
 
-	files_uploaded.addEventListener("change", function() {
+	elements.file_uplodaded.addEventListener("change", function() {
 		//access to files through button click
 		traverseFiles(this.files);
 	}, false);
 
-	drop_area.addEventListener("dragleave", function(e) {
+	elements.drop_area.addEventListener("dragleave", function(e) {
 		var target = e.target; //element that set off the listener
 		
-		//if there was a target and it was our drop_area
-		if(target && target === drop_area) {
+		//if there was a target and it was our elements.drop_area
+		if(target && target === elements.drop_area) {
 			//remove its class name
 			this.className = "";
 		}
@@ -259,19 +225,19 @@
 		
 	}, false);
 
-	drop_area.addEventListener("dragenter", function(e) {
+	elements.drop_area.addEventListener("dragenter", function(e) {
 		this.className = "over";
 		e.preventDefault();
 		e.stopPropagation();
 	}, false);
 
-	drop_area.addEventListener("dragover", function(e) {
+	elements.drop_area.addEventListener("dragover", function(e) {
 
 		e.preventDefault();
 		e.stopPropagation();
 	}, false);
 
-	drop_area.addEventListener("drop", function(e) {
+	elements.drop_area.addEventListener("drop", function(e) {
 		//granted access to files for drag and drop
 		traverseFiles(e.dataTransfer.files);
 		this.className = "";
@@ -279,4 +245,3 @@
 		e.stopPropagation();
 	}, false);
 
-})();
